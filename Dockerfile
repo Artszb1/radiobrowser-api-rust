@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.15
 ADD . /app
 WORKDIR /app
 RUN apk update
@@ -7,7 +7,7 @@ RUN rustup-init -y
 ENV PATH="/root/.cargo/bin:$PATH"
 RUN cargo build --release
 
-FROM alpine:3.14
+FROM alpine:3.15
 EXPOSE 8080
 COPY --from=0 /app/target/release/radiobrowser-api-rust /usr/bin/
 COPY --from=0 /app/static/ /usr/lib/radiobrowser/static/
